@@ -34,6 +34,15 @@ CREATE TABLE `tbladverts` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tbladverts`
+--
+
+LOCK TABLES `tbladverts` WRITE;
+/*!40000 ALTER TABLE `tbladverts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbladverts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tblemployees`
 --
 
@@ -67,6 +76,16 @@ CREATE TABLE `tblemployees` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tblemployees`
+--
+
+LOCK TABLES `tblemployees` WRITE;
+/*!40000 ALTER TABLE `tblemployees` DISABLE KEYS */;
+INSERT INTO `tblemployees` VALUES (1,'Carel','Scholtz','1111','carel.c.scholtz@gmail.com','0847938746',NULL,NULL,NULL,'RSA','Carel','Admin',3,NULL,NULL,NULL,NULL,NULL),(2,'Carine','Krynauw','2222',NULL,NULL,NULL,NULL,NULL,NULL,'Carine','Admin',1,NULL,NULL,NULL,NULL,NULL),(3,'Hein','Durow','3333',NULL,NULL,NULL,NULL,NULL,NULL,'Hein','Admin',2,NULL,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `tblemployees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tblluemployeetype`
 --
 
@@ -80,6 +99,16 @@ CREATE TABLE `tblluemployeetype` (
   PRIMARY KEY (`PKiEmployeeTypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblluemployeetype`
+--
+
+LOCK TABLES `tblluemployeetype` WRITE;
+/*!40000 ALTER TABLE `tblluemployeetype` DISABLE KEYS */;
+INSERT INTO `tblluemployeetype` VALUES (1,'Waiter','Waiter'),(2,'Patron','Patron'),(3,'Processor','Processor');
+/*!40000 ALTER TABLE `tblluemployeetype` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tbllumenugroups`
@@ -97,6 +126,15 @@ CREATE TABLE `tbllumenugroups` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tbllumenugroups`
+--
+
+LOCK TABLES `tbllumenugroups` WRITE;
+/*!40000 ALTER TABLE `tbllumenugroups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbllumenugroups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbllusubmenus`
 --
 
@@ -110,6 +148,15 @@ CREATE TABLE `tbllusubmenus` (
   PRIMARY KEY (`PKiSubMenuID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbllusubmenus`
+--
+
+LOCK TABLES `tbllusubmenus` WRITE;
+/*!40000 ALTER TABLE `tbllusubmenus` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbllusubmenus` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tblmenu`
@@ -134,6 +181,15 @@ CREATE TABLE `tblmenu` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tblmenu`
+--
+
+LOCK TABLES `tblmenu` WRITE;
+/*!40000 ALTER TABLE `tblmenu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblmenu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tblorders`
 --
 
@@ -156,6 +212,15 @@ CREATE TABLE `tblorders` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tblorders`
+--
+
+LOCK TABLES `tblorders` WRITE;
+/*!40000 ALTER TABLE `tblorders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblorders` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tblorderssubitems`
 --
 
@@ -169,6 +234,15 @@ CREATE TABLE `tblorderssubitems` (
   PRIMARY KEY (`PKiOrdersSubItemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblorderssubitems`
+--
+
+LOCK TABLES `tblorderssubitems` WRITE;
+/*!40000 ALTER TABLE `tblorderssubitems` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblorderssubitems` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tblpatrons`
@@ -191,6 +265,15 @@ CREATE TABLE `tblpatrons` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tblpatrons`
+--
+
+LOCK TABLES `tblpatrons` WRITE;
+/*!40000 ALTER TABLE `tblpatrons` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblpatrons` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tblproviders`
 --
 
@@ -209,6 +292,15 @@ CREATE TABLE `tblproviders` (
   PRIMARY KEY (`PKiProviderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tblproviders`
+--
+
+LOCK TABLES `tblproviders` WRITE;
+/*!40000 ALTER TABLE `tblproviders` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblproviders` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tblspecials`
@@ -230,6 +322,15 @@ CREATE TABLE `tblspecials` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tblspecials`
+--
+
+LOCK TABLES `tblspecials` WRITE;
+/*!40000 ALTER TABLE `tblspecials` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tblspecials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbltables`
 --
 
@@ -247,6 +348,24 @@ CREATE TABLE `tbltables` (
   PRIMARY KEY (`PKiTableID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbltables`
+--
+
+LOCK TABLES `tbltables` WRITE;
+/*!40000 ALTER TABLE `tbltables` DISABLE KEYS */;
+INSERT INTO `tbltables` VALUES (1,1,1,1,NULL,NULL,'GUI1');
+/*!40000 ALTER TABLE `tbltables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'handup'
+--
+
+--
+-- Dumping routines for database 'handup'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -257,4 +376,4 @@ CREATE TABLE `tbltables` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-07 10:49:18
+-- Dump completed on 2015-04-07 13:55:15
