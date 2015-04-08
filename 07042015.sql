@@ -155,6 +155,7 @@ CREATE TABLE `tbllusubmenus` (
 
 LOCK TABLES `tbllusubmenus` WRITE;
 /*!40000 ALTER TABLE `tbllusubmenus` DISABLE KEYS */;
+INSERT INTO `tbllusubmenus` VALUES (1,'Startch','Startch Sides');
 /*!40000 ALTER TABLE `tbllusubmenus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -186,6 +187,7 @@ CREATE TABLE `tblmenu` (
 
 LOCK TABLES `tblmenu` WRITE;
 /*!40000 ALTER TABLE `tblmenu` DISABLE KEYS */;
+INSERT INTO `tblmenu` VALUES (1,1,'Burger','Burger and Chips',NULL,60,NULL,NULL,NULL,NULL),(2,1,'Chips','Chips',NULL,3,NULL,1,1,NULL);
 /*!40000 ALTER TABLE `tblmenu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -376,4 +378,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-07 13:55:15
+-- Dump completed on 2015-04-08 10:38:18
