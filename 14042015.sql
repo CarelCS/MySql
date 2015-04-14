@@ -257,7 +257,7 @@ CREATE TABLE `tblorders` (
   CONSTRAINT `FK_ORDER_MENU` FOREIGN KEY (`FKiMenuID`) REFERENCES `tblmenu` (`PKiMenuID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_PROVIDER` FOREIGN KEY (`FKiProviderID`) REFERENCES `tblproviders` (`PKiProviderID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_TABLE` FOREIGN KEY (`FKiTableID`) REFERENCES `tbltables` (`PKiTableID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,6 +266,7 @@ CREATE TABLE `tblorders` (
 
 LOCK TABLES `tblorders` WRITE;
 /*!40000 ALTER TABLE `tblorders` DISABLE KEYS */;
+INSERT INTO `tblorders` VALUES (1,1,0,1,1,1,'2015-04-14 13:41:29','wsadfg','1',60,0),(2,1,0,1,1,1,'2015-04-14 13:46:07','asdf','1',60,0),(3,1,0,1,1,1,'2015-04-14 13:47:42','zdfghfdsgh','1',60,0);
 /*!40000 ALTER TABLE `tblorders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -381,6 +382,39 @@ LOCK TABLES `tblspecials` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tbltablealerts`
+--
+
+DROP TABLE IF EXISTS `tbltablealerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tbltablealerts` (
+  `PKiTableAlertsID` int(11) NOT NULL AUTO_INCREMENT,
+  `FKiTableID` int(11) NOT NULL,
+  `FKiEployeeID` int(11) NOT NULL,
+  `dtAlertStartTime` datetime DEFAULT NULL,
+  `dtAlertConfimTime` datetime DEFAULT NULL,
+  `sAlertMessage` varchar(45) DEFAULT NULL,
+  `bActiveStatus` int(11) DEFAULT NULL,
+  PRIMARY KEY (`PKiTableAlertsID`),
+  KEY `FK_ALERT_EMP_idx` (`FKiEployeeID`),
+  KEY `FK_ALERT_TABLE_idx` (`FKiTableID`),
+  CONSTRAINT `FK_ALERT_EMP` FOREIGN KEY (`FKiEployeeID`) REFERENCES `tblemployees` (`PKiEmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_ALERT_TABLE` FOREIGN KEY (`FKiTableID`) REFERENCES `tbltables` (`PKiTableID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tbltablealerts`
+--
+
+LOCK TABLES `tbltablealerts` WRITE;
+/*!40000 ALTER TABLE `tbltablealerts` DISABLE KEYS */;
+INSERT INTO `tbltablealerts` VALUES (1,1,1,'2015-04-14 12:52:50','0001-01-01 00:00:00','Table call',1);
+/*!40000 ALTER TABLE `tbltablealerts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tbltables`
 --
 
@@ -401,7 +435,7 @@ CREATE TABLE `tbltables` (
   KEY `FK_TABLE_PROVIDER_idx` (`FKiProviderID`),
   CONSTRAINT `FK_TABLE_EMP` FOREIGN KEY (`FKiEmployeeID`) REFERENCES `tblemployees` (`PKiEmployeeID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_TABLE_PROVIDER` FOREIGN KEY (`FKiProviderID`) REFERENCES `tblproviders` (`PKiProviderID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,7 +444,7 @@ CREATE TABLE `tbltables` (
 
 LOCK TABLES `tbltables` WRITE;
 /*!40000 ALTER TABLE `tbltables` DISABLE KEYS */;
-INSERT INTO `tbltables` VALUES (1,1,1,1,NULL,NULL,'GUI1',1);
+INSERT INTO `tbltables` VALUES (1,1,1,1,'2015-04-14 11:29:32','0001-01-01 00:00:00','GUI1',1),(2,2,1,4,'2015-04-14 11:29:32','0001-01-01 00:00:00','37ROY',1),(3,2,1,6,'2015-04-14 11:31:57','0001-01-01 00:00:00','13HME',1),(4,2,1,5,'2015-04-14 11:37:43','0001-01-01 00:00:00','8H5O4',1);
 /*!40000 ALTER TABLE `tbltables` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -537,8 +571,8 @@ IN insEmployeeAddress3 VarChar(45),
 IN insEmployeeNationality VarChar(45),
 IN insUserName VarChar(45),
 IN insPassword VarChar(45),
-IN dtStartDate DateTime,
-IN dtEndDate DateTime,
+IN indtStartDate DateTime,
+IN indtEndDate DateTime,
 IN inbGender VarChar(45),
 IN inbActiveStatus VarChar(45)
 )
@@ -817,7 +851,7 @@ IN inFKiMenuID Int(11),
 IN inFKiMenuGroupID Int(11),
 IN insMenuItemName VarChar(45),
 IN insMenuItemDescription VarChar(45),
-IN dtMenuItemModified DateTime,
+IN indtMenuItemModified DateTime,
 IN indblMenuItemPrice Decimal(11,0),
 IN inimgMenuItemImage VarChar(45),
 IN inbActiveStatus Int(11)
@@ -936,7 +970,7 @@ IN inFKiPatronID Int(11),
 IN inFKiMenuID Int(11),
 IN inFKiTableID Int(11),
 IN inFKiMenuGroupID Int(11),
-IN dtOrderDateStamp DateTime,
+IN indtOrderDateStamp DateTime,
 IN insMenuItemChanges VarChar(45),
 IN insOrderStatus VarChar(45),
 IN indblOrderValue Decimal(11,0),
@@ -1002,7 +1036,7 @@ IN insPatronSurname VarChar(45),
 IN insPatronContactNumber VarChar(45),
 IN insPatronEmail VarChar(45),
 IN inbGender VarChar(45),
-IN dtSignUpDate DateTime
+IN indtSignUpDate DateTime
 )
 BEGIN
 	UPDATE tblpatrons
@@ -1060,7 +1094,7 @@ CREATE DEFINER=`Handup`@`%` PROCEDURE `tblproviders_UPDATE`(
 IN inPKiProviderID Int(11),
 IN insProviderName VarChar(45),
 IN insProviderLocation VarChar(45),
-IN dtProviderJoined DateTime,
+IN indtProviderJoined DateTime,
 IN insProviderContactPerson VarChar(45),
 IN insProviderContactInfo VarChar(45),
 IN insProviderEmail VarChar(45),
@@ -1120,8 +1154,8 @@ DELIMITER ;;
 CREATE DEFINER=`Handup`@`%` PROCEDURE `tblspecials_UPDATE`(
 IN inPKiSpecialID Int(11),
 IN inFKiMenuID Int(11),
-IN dtStartDate DateTime,
-IN dtEndDate DateTime,
+IN indtStartDate DateTime,
+IN indtEndDate DateTime,
 IN insDaysOfWeek VarChar(45),
 IN intStartTime VarChar(45),
 IN intEndTime VarChar(45)
@@ -1131,6 +1165,66 @@ BEGIN
 	SET
 	FKiMenuID=inFKiMenuID,dtStartDate=indtStartDate,dtEndDate=indtEndDate,sDaysOfWeek=insDaysOfWeek,tStartTime=intStartTime,tEndTime=intEndTime
 	WHERE PKiSpecialID=inPKiSpecialID;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tbltablealerts_INSERT` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`Handup`@`%` PROCEDURE `tbltablealerts_INSERT`(
+IN FKiTableID Int(11),
+IN FKiEployeeID Int(11),
+IN dtAlertStartTime DateTime,
+IN dtAlertConfimTime DateTime,
+IN sAlertMessage VarChar(45),
+IN bActiveStatus Int(11),
+OUT outPKiTableAlertsID INTEGER)
+BEGIN
+	INSERT INTO tbltablealerts
+	(FKiTableID,FKiEployeeID,dtAlertStartTime,dtAlertConfimTime,sAlertMessage,bActiveStatus)
+	VALUES
+	(FKiTableID,FKiEployeeID,dtAlertStartTime,dtAlertConfimTime,sAlertMessage,bActiveStatus);
+Set outPKiTableAlertsID = LAST_INSERT_ID();
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `tbltablealerts_UPDATE` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`Handup`@`%` PROCEDURE `tbltablealerts_UPDATE`(
+IN inPKiTableAlertsID Int(11),
+IN inFKiTableID Int(11),
+IN inFKiEployeeID Int(11),
+IN indtAlertStartTime DateTime,
+IN indtAlertConfimTime DateTime,
+IN insAlertMessage VarChar(45),
+IN inbActiveStatus Int(11)
+)
+BEGIN
+	UPDATE tbltablealerts
+	SET
+	FKiTableID=inFKiTableID,FKiEployeeID=inFKiEployeeID,dtAlertStartTime=indtAlertStartTime,dtAlertConfimTime=indtAlertConfimTime,sAlertMessage=insAlertMessage,bActiveStatus=inbActiveStatus
+	WHERE PKiTableAlertsID=inPKiTableAlertsID;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -1183,8 +1277,8 @@ IN inPKiTableID Int(11),
 IN inFKiEmployeeID Int(11),
 IN inFKiProviderID Int(11),
 IN iniGuestNumber Int(11),
-IN dtStartDateTime DateTime,
-IN dtEndDateTime DateTime,
+IN indtStartDateTime DateTime,
+IN indtEndDateTime DateTime,
 IN inUIDGenerated VarChar(45),
 IN inbActiveStatus Int(11)
 )
@@ -1209,4 +1303,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-14  9:33:25
+-- Dump completed on 2015-04-14 13:52:18
