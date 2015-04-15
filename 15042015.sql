@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `handup` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `handup`;
 -- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
 -- Host: 127.0.0.1    Database: handup
@@ -183,7 +181,7 @@ CREATE TABLE `tbllusubmenus` (
   KEY `FK_SUBMENU_GROUP_idx` (`FKiSubMenuGroupTypeID`),
   CONSTRAINT `FK_SUBMENU_GROUP` FOREIGN KEY (`FKiSubMenuGroupTypeID`) REFERENCES `tbllusubmenugrouptype` (`PKiSubMenuGroupTypeID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_SUBMENU_MENU` FOREIGN KEY (`FKiMenuID`) REFERENCES `tblmenu` (`PKiMenuID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -192,6 +190,7 @@ CREATE TABLE `tbllusubmenus` (
 
 LOCK TABLES `tbllusubmenus` WRITE;
 /*!40000 ALTER TABLE `tbllusubmenus` DISABLE KEYS */;
+INSERT INTO `tbllusubmenus` VALUES (1,3,2,'Peper','Peper'),(2,3,2,'Monkeygland','Monkey stuff'),(3,3,3,'Chips','Chips'),(4,3,3,'Baked Patato','Baked'),(5,3,1,'Rare','Bloddy'),(6,3,1,'Med-Rare','Best'),(7,3,1,'Medium','Mmmmm'),(8,3,1,'Well-done','Hit him in the mouth and tell him to f-off');
 /*!40000 ALTER TABLE `tbllusubmenus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,7 +217,7 @@ CREATE TABLE `tblmenu` (
   KEY `FK_MENU_GROUP_idx` (`FKiMenuGroupID`),
   CONSTRAINT `FK_MENU_GROUP` FOREIGN KEY (`FKiMenuGroupID`) REFERENCES `tbllumenugroups` (`PKiMenuGroupID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_MENU_PROVIDER` FOREIGN KEY (`FKiProviderID`) REFERENCES `tblproviders` (`PKiProviderID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -227,7 +226,7 @@ CREATE TABLE `tblmenu` (
 
 LOCK TABLES `tblmenu` WRITE;
 /*!40000 ALTER TABLE `tblmenu` DISABLE KEYS */;
-INSERT INTO `tblmenu` VALUES (1,1,NULL,1,'Burger','Burger and Chips',NULL,60,NULL,1),(2,1,1,1,'Chips','Chips',NULL,3,NULL,1);
+INSERT INTO `tblmenu` VALUES (1,1,NULL,1,'Burger','Burger and Chips',NULL,60,NULL,1),(2,1,1,1,'Chips','Chips',NULL,3,NULL,1),(3,1,0,3,'sTEAK','Steak',NULL,45,NULL,1);
 /*!40000 ALTER TABLE `tblmenu` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -257,7 +256,7 @@ CREATE TABLE `tblorders` (
   CONSTRAINT `FK_ORDER_MENU` FOREIGN KEY (`FKiMenuID`) REFERENCES `tblmenu` (`PKiMenuID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_PROVIDER` FOREIGN KEY (`FKiProviderID`) REFERENCES `tblproviders` (`PKiProviderID`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_ORDER_TABLE` FOREIGN KEY (`FKiTableID`) REFERENCES `tbltables` (`PKiTableID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,7 +265,7 @@ CREATE TABLE `tblorders` (
 
 LOCK TABLES `tblorders` WRITE;
 /*!40000 ALTER TABLE `tblorders` DISABLE KEYS */;
-INSERT INTO `tblorders` VALUES (1,1,0,1,1,1,'2015-04-14 13:41:29','wsadfg','1',60,0),(2,1,0,1,1,1,'2015-04-14 13:46:07','asdf','1',60,0),(3,1,0,1,1,1,'2015-04-14 13:47:42','zdfghfdsgh','1',60,0),(4,1,0,1,1,1,'2015-04-15 07:38:34','<br /> CAREL TEXT2<br /> text3','1',60,0),(5,1,0,1,1,1,'2015-04-15 07:46:39','<br /> rare','1',60,0),(6,1,0,1,1,1,'2015-04-15 07:49:00','<br /> another','1',60,0),(7,1,0,1,1,1,'2015-04-15 07:57:41','','1',60,0);
+INSERT INTO `tblorders` VALUES (1,1,0,1,1,1,'2015-04-14 13:41:29','wsadfg','1',60,0),(2,1,0,1,1,1,'2015-04-14 13:46:07','asdf','1',60,0),(3,1,0,1,1,1,'2015-04-14 13:47:42','zdfghfdsgh','1',60,0),(4,1,0,1,1,1,'2015-04-15 07:38:34','<br /> CAREL TEXT2<br /> text3<br /> s','1',60,0),(5,1,0,1,1,1,'2015-04-15 07:46:39','<br /> rare','1',60,0),(6,1,0,1,1,1,'2015-04-15 07:49:00','<br /> another','1',60,0),(7,1,0,1,1,1,'2015-04-15 07:57:41','','1',60,0),(8,1,0,1,2,1,'2015-04-15 09:19:16','<br /> zCsDC<br /> ASDaS<br /> ASDAsdas','1',60,0);
 /*!40000 ALTER TABLE `tblorders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,6 +428,8 @@ CREATE TABLE `tbltables` (
   `dtStartDateTime` datetime DEFAULT NULL,
   `dtEndDateTime` datetime DEFAULT NULL,
   `UIDGenerated` varchar(45) DEFAULT NULL,
+  `sTableName` varchar(45) DEFAULT NULL,
+  `sTableDescription` varchar(45) DEFAULT NULL,
   `bActiveStatus` int(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (`PKiTableID`),
   KEY `FK_TABLE_EMP_idx` (`FKiEmployeeID`),
@@ -444,13 +445,9 @@ CREATE TABLE `tbltables` (
 
 LOCK TABLES `tbltables` WRITE;
 /*!40000 ALTER TABLE `tbltables` DISABLE KEYS */;
-INSERT INTO `tbltables` VALUES (1,1,1,1,'2015-04-14 11:29:32','0001-01-01 00:00:00','GUI1',1),(2,2,1,4,'2015-04-14 11:29:32','0001-01-01 00:00:00','37ROY',1),(3,2,1,6,'2015-04-14 11:31:57','0001-01-01 00:00:00','13HME',1),(4,2,1,5,'2015-04-14 11:37:43','0001-01-01 00:00:00','8H5O4',1);
+INSERT INTO `tbltables` VALUES (1,1,1,1,'2015-04-14 11:29:32','0001-01-01 00:00:00','GUI1',NULL,NULL,1),(2,2,1,4,'2015-04-14 11:29:32','0001-01-01 00:00:00','37ROY',NULL,NULL,1),(3,2,1,6,'2015-04-14 11:31:57','0001-01-01 00:00:00','13HME',NULL,NULL,1),(4,2,1,5,'2015-04-14 11:37:43','0001-01-01 00:00:00','8H5O4',NULL,NULL,1);
 /*!40000 ALTER TABLE `tbltables` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'handup'
---
 
 --
 -- Dumping routines for database 'handup'
@@ -940,7 +937,7 @@ IN FKiMenuID Int(11),
 IN FKiTableID Int(11),
 IN FKiMenuGroupID Int(11),
 IN dtOrderDateStamp DateTime,
-IN sMenuItemChanges VarChar(45),
+IN sMenuItemChanges VarChar(255),
 IN sOrderStatus VarChar(45),
 IN dblOrderValue Decimal(11,0),
 IN iBillID Int(11),
@@ -974,8 +971,8 @@ IN inFKiPatronID Int(11),
 IN inFKiMenuID Int(11),
 IN inFKiTableID Int(11),
 IN inFKiMenuGroupID Int(11),
-IN dtOrderDateStamp DateTime,
-IN insMenuItemChanges VarChar(45),
+IN indtOrderDateStamp DateTime,
+IN insMenuItemChanges VarChar(255),
 IN insOrderStatus VarChar(45),
 IN indblOrderValue Decimal(11,0),
 IN iniBillID Int(11)
@@ -983,7 +980,7 @@ IN iniBillID Int(11)
 BEGIN
 	UPDATE tblorders
 	SET
-	FKiProviderID=inFKiProviderID,FKiPatronID=inFKiPatronID,FKiMenuID=inFKiMenuID,FKiTableID=inFKiTableID,FKiMenuGroupID=inFKiMenuGroupID,dtOrderDateStamp=dtOrderDateStamp,sMenuItemChanges=insMenuItemChanges,sOrderStatus=insOrderStatus,dblOrderValue=indblOrderValue,iBillID=iniBillID
+	FKiProviderID=inFKiProviderID,FKiPatronID=inFKiPatronID,FKiMenuID=inFKiMenuID,FKiTableID=inFKiTableID,FKiMenuGroupID=inFKiMenuGroupID,dtOrderDateStamp=indtOrderDateStamp,sMenuItemChanges=insMenuItemChanges,sOrderStatus=insOrderStatus,dblOrderValue=indblOrderValue,iBillID=iniBillID
 	WHERE PKiOrderID=inPKiOrderID;
 END ;;
 DELIMITER ;
@@ -1252,13 +1249,15 @@ IN iGuestNumber Int(11),
 IN dtStartDateTime DateTime,
 IN dtEndDateTime DateTime,
 IN UIDGenerated VarChar(45),
+IN sTableName VarChar(45),
+IN sTableDescription VarChar(45),
 IN bActiveStatus Int(11),
 OUT outPKiTableID INTEGER)
 BEGIN
 	INSERT INTO tbltables
-	(FKiEmployeeID,FKiProviderID,iGuestNumber,dtStartDateTime,dtEndDateTime,UIDGenerated,bActiveStatus)
+	(FKiEmployeeID,FKiProviderID,iGuestNumber,dtStartDateTime,dtEndDateTime,UIDGenerated,sTableName,sTableDescription,bActiveStatus)
 	VALUES
-	(FKiEmployeeID,FKiProviderID,iGuestNumber,dtStartDateTime,dtEndDateTime,UIDGenerated,bActiveStatus);
+	(FKiEmployeeID,FKiProviderID,iGuestNumber,dtStartDateTime,dtEndDateTime,UIDGenerated,sTableName,sTableDescription,bActiveStatus);
 Set outPKiTableID = LAST_INSERT_ID();
 END ;;
 DELIMITER ;
@@ -1284,12 +1283,14 @@ IN iniGuestNumber Int(11),
 IN indtStartDateTime DateTime,
 IN indtEndDateTime DateTime,
 IN inUIDGenerated VarChar(45),
+IN insTableName VarChar(45),
+IN insTableDescription VarChar(45),
 IN inbActiveStatus Int(11)
 )
 BEGIN
 	UPDATE tbltables
 	SET
-	FKiEmployeeID=inFKiEmployeeID,FKiProviderID=inFKiProviderID,iGuestNumber=iniGuestNumber,dtStartDateTime=indtStartDateTime,dtEndDateTime=indtEndDateTime,UIDGenerated=inUIDGenerated,bActiveStatus=inbActiveStatus
+	FKiEmployeeID=inFKiEmployeeID,FKiProviderID=inFKiProviderID,iGuestNumber=iniGuestNumber,dtStartDateTime=indtStartDateTime,dtEndDateTime=indtEndDateTime,UIDGenerated=inUIDGenerated,sTableName=insTableName,sTableDescription=insTableDescription,bActiveStatus=inbActiveStatus
 	WHERE PKiTableID=inPKiTableID;
 END ;;
 DELIMITER ;
@@ -1307,4 +1308,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-15  8:28:43
+-- Dump completed on 2015-04-15 10:40:10
